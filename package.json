@@ -1,0 +1,25 @@
+{
+  "name": "seneca-jsonfile-store-watcher",
+  "version": "0.0.0",
+  "description": "A behaviour modifying seneca plugin, used in conjunction with seneca-jsonfile-store to enable a watching/changes API ",
+  "main": "jsonfile-store-watcher.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidmarkclements/seneca-jsonfile-store-watcher.git"
+  },
+  "author": "David Mark Clements",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidmarkclements/seneca-jsonfile-store-watcher/issues"
+  },
+  "homepage": "https://github.com/davidmarkclements/seneca-jsonfile-store-watcher",
+  "devDependencies": {
+    "seneca-jsonfile-store": "^0.1.6"
+  }
+}
