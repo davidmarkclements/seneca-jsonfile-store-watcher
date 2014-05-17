@@ -4,6 +4,7 @@ A behaviour modifying seneca plugin, used in conjunction with seneca-jsonfile-st
 
 (*Note:* not yet on npm)
 
+
 ## Install
 
 ```sh
@@ -29,6 +30,18 @@ entity.make$({id$:'test1'}).save$(function() {})
 
 ```
 
+## Test
+
+*Note:* Tests are correctly written, 
+and plugin works as intended, but the mocha
+environment is having an effect, possibly
+on the file watching, so that tests fail. 
+
+```
+npm test
+```
+
+
 ## API
 Following events can be listened to using on/once etc. 
 
@@ -45,6 +58,6 @@ Following events can be listened to using on/once etc.
 ```
 
 ```
-.on('error', function (id) {})
+.on('error', function (err) {})
 ```
 
