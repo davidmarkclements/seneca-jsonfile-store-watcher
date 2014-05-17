@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/mocha -u qunit"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/davidmarkclements/seneca-jsonfile-store-watcher",
   "devDependencies": {
-    "seneca-jsonfile-store": "^0.1.6"
+    "seneca": "https://github.com/davidmarkclements/seneca/archive/master.tar.gz",
+    "seneca-jsonfile-store": "https://github.com/davidmarkclements/seneca-jsonfile-store/archive/master.tar.gz"
+  },
+  "dependencies": {
+    "chokidar": "^0.8.2"
   }
 }
