@@ -16,55 +16,90 @@ seneca.use('../jsonfile-store-watcher');
 
 var entity = seneca.make$('test');
 
-suite('augmentation')
+function wait(time, cb) {
+  setTimeout(cb, time);
+}
 
-test('should convert entities to EventEmitters', function () {
-	entity.should.be.an.instanceof(require('events').EventEmitter);
+suite('augmentation')
+test('should convert entities to EventEmitters', function (done) {
+ entity.should.be.an.instanceof(require('events').EventEmitter);
+ done();
 })
 
 suite('insert')
 
 test('should emit insert when new record created', function (done) {
-  
-  entity.on('insert', function(id) {
-    id.should.equal('test1');
+  this.timeout(3000)
+
+  //just listen once for insert, 
+  //as we'll be adding at other points too
+  entity.once('insert', function(data) {
+    data.should.be.an.object;
+    data.id.should.equal('test1');
+    data.name.should.equal('test');
     done();
   })
 
-  entity.make$({id$:'test1'}).save$(function() {})
+  setTimeout(function () {
+    entity.make$({id$:'test1'}).save$()  
+  }, 2500)
+  
 
 })
+
 
 suite('update')
-
 test('should emit update when a record is updated', function (done) {
-  
-  entity.on('update', function(id) {
-    id.should.equal('test2');
-    done();
-  })
+  this.timeout(10000);
 
-  entity.make$({id$:'test2'}).save$(function(err, rec) {
-    should.equal(err, null);
-    rec.newProp = 'newprop';
-    rec.save$(function(){});
+  setTimeout(function () {
 
-  })
+    entity.on('update', function(data) {
+      data.should.be.an.object;
+      data.id.should.equal('test2');
+      data.name.should.equal('test');
+      done();
+    })
+
+    entity.make$({id$:'test2'}).save$(function(err, rec) {
+      should.equal(err, null);
+      rec.newProp = 'newprop';
+      setTimeout(function() {
+        rec.save$();
+      }, 2000)
+      
+
+    })
+
+  }, 1000)
 
 })
+
 
 suite('remove')
 
 test('should emit remove when a record is removed', function (done) {
-  
-  entity.on('remove', function(id) {
-    id.should.equal('test3');
+  this.timeout(5000);
+
+  entity.on('remove', function(data) {
+    data.should.be.an.object;
+    data.id.should.equal('test3');
+    data.name.should.equal('test');
     done();
   })
 
+
+
   entity.make$({id$:'test3'}).save$(function(err, rec) {
     should.equal(err, null);
-    entity.remove$('test3',function(){});
+
+    //give time for io and polling
+    setTimeout(function () {
+      entity.remove$('test3');
+    }, 2500);
+    
   })
 
+
 })
+
