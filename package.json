@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/davidmarkclements/seneca-jsonfile-store-watcher",
   "devDependencies": {
-    "seneca": "https://github.com/davidmarkclements/seneca/archive/master.tar.gz",
-    "seneca-jsonfile-store": "https://github.com/davidmarkclements/seneca-jsonfile-store/archive/master.tar.gz",
-    "mocha": "^1.20.1"
+    "mocha": "^1.20.1",
+    "seneca": "^0.5.19",
+    "seneca-jsonfile-store": "^0.1.8"
   },
   "dependencies": {
     "chokidar": "^0.8.2"

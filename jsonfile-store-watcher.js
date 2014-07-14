@@ -22,7 +22,11 @@ function ignore(p) {
 
 module.exports = function(seneca, opts, cb) {  
   var proto = seneca.make$('faux').__proto__;
-  var folder = seneca.options().store.folder;
+  var senopts = seneca.options();
+  if (!senopts['jsonfile-store']) {
+    throw Error('jsonfile-store must be included before jsonfile-store-watcher');
+  }
+  var folder = senopts['jsonfile-store'].folder;
   proto.__proto__ = new EventEmitter;
     
   chokidar.watch(folder, {ignored: ignore})
